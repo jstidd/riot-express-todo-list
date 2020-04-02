@@ -13,3 +13,9 @@ script:
 before_install:
 - openssl aes-256-cbc -K $encrypted_8055d3a86d0e_key -iv $encrypted_8055d3a86d0e_iv
   -in hs-key.pem.enc -out ./hs-key.pem -d
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: chmod +x ./deploy.sh && ./deploy.sh
+    on:
+      branch: master
